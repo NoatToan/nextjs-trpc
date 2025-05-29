@@ -8,9 +8,15 @@ export const appRouter = router({
         text: z.string(),
       }),
     )
-    .query(opts => {
+    .query(async opts => {
+      const post = await prisma.post.findUnique({
+        where: { id: parseInt(id) },
+        include: {
+          author: true,
+        },
+      });
       return {
-        greeting: `hello here from server ${opts.input.text}`,
+        post: post,
       };
     }),
 });
