@@ -1,0 +1,9 @@
+name: Develop Pull Request
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+      - develop
