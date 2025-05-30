@@ -7,3 +7,7 @@ on:
     branches:
       - main
       - develop
+
+jobs:
+  lint_and_prettier:
+    uses: ./.github/workflows/lint_and_prettier.yml
