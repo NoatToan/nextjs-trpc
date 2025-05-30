@@ -1,6 +1,6 @@
 import { Accordion, AccordionItem } from '@heroui/react';
-import { IcArrowDownSvg } from '@src/modules/assets';
-import { trpc } from '@src/modules/utils/trpc';
+import { IcArrowDownSvg } from '@src/_modules/assets';
+import { trpc } from '@src/_modules/utils/trpc';
 
 export default function IndexPage() {
   const hello = trpc.hello.useQuery({ text: 'client' });
