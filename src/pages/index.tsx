@@ -23,7 +23,7 @@ export default function IndexPage() {
           {'defaultContent'}
         </AccordionItem>
       </Accordion>
-      <p>{hello.data.greeting}</p>
+      <p>{hello.data.post}</p>
     </div>
   );
 }

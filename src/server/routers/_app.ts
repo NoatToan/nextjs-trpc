@@ -9,14 +9,14 @@ export const appRouter = router({
       }),
     )
     .query(async opts => {
-      const post = await prisma.post.findUnique({
-        where: { id: parseInt(id) },
-        include: {
-          author: true,
-        },
-      });
+      // const post = await prisma.post.findUnique({
+      //   where: { id: parseInt(id) },
+      //   include: {
+      //     author: true,
+      //   },
+      // });
       return {
-        post: post,
+        post: 'hello',
       };
     }),
 });

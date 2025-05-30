@@ -7,7 +7,7 @@ services:
     image: mysql:8.0.27
     command: '--default-authentication-plugin=mysql_native_password'
     volumes:
-      - db_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=somewordpress
@@ -19,6 +19,13 @@ services:
       - 33060
     ports:
       - 3306:3306
+  
+  postgres_cms:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
   phpmyadmin:
     platform: linux/amd64
@@ -36,5 +43,6 @@ services:
     volumes:
       - /sessions
 volumes:
-  db_data:
-  wp_data:
+  mysql_data:
+  postgres_data:
+    
