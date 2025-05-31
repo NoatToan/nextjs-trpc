@@ -19,13 +19,6 @@ services:
       - 33060
     ports:
       - 3306:3306
-  
-  postgres_cms:
-    image: postgres:latest
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
 
   phpmyadmin:
     platform: linux/amd64
@@ -42,6 +35,19 @@ services:
       - '8080:80'
     volumes:
       - /sessions
+  postgres:
+    restart: always
+    image: postgres:latest
+    volumes:
+      - ./docker/pgdata:/var/lib/postgresql/data
+    ports:
+    - '5432:5432'
+    user: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: your-database-name # THIS MUST MATCH YOUR DB NAME IN .env
+      POSTGRES_PASSWORD: your_password
+      POSTGRES_HOST_AUTH_METHOD: trust
 volumes:
   mysql_data:
   postgres_data:

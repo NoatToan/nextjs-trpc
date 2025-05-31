@@ -2,12 +2,17 @@
   "name": "nextjs-trpc",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev_turbo": "next dev --turbopack",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "type": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types"
   },
   "dependencies": {
     "@heroui/react": "^2.7.8",
@@ -21,7 +26,14 @@
     "next": "15.3.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "zod": "^3.25.36"
+    "zod": "^3.25.36",
+    "@payloadcms/db-postgres": "3.40.0",
+    "@payloadcms/next": "3.40.0",
+    "@payloadcms/payload-cloud": "3.40.0",
+    "@payloadcms/richtext-lexical": "3.40.0",
+    "@payloadcms/ui": "3.40.0",
+    "payload": "3.40.0",
+    "graphql": "^16.8.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
