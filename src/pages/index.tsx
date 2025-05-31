@@ -12,7 +12,7 @@ export default function IndexPage() {
   return (
     <div>
       {/* <IcArrowDownSvg /> */}
-      <Accordion>
+      {/* <Accordion>
         <AccordionItem key="1" aria-label="Accordion 1" title="Accordion 1">
           {'defaultContent'}
         </AccordionItem>
@@ -22,8 +22,8 @@ export default function IndexPage() {
         <AccordionItem key="3" aria-label="Accordion 3" title="Accordion 3">
           {'defaultContent'}
         </AccordionItem>
-      </Accordion>
-      <p>{hello.data.greeting}</p>
+      </Accordion> */}
+      <p>{hello.data.message}</p>
     </div>
   );
 }

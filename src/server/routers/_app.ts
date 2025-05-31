@@ -8,17 +8,12 @@ export const appRouter = router({
         text: z.string(),
       }),
     )
-    .query(async opts => {
-      const post = await prisma.post.findUnique({
-        where: { id: parseInt(id) },
-        include: {
-          author: true,
-        },
-      });
+    .query(({ input }) => {
       return {
-        post: post,
+        message: `Hello, ${input.text}!`,
       };
     }),
 });
-// export type definition of API
+
+// Export type definition of API
 export type AppRouter = typeof appRouter;
