@@ -1,8 +1,10 @@
+import configPromise from '@payload-config';
+import { getPayload } from 'payload';
 import { z } from 'zod';
 import { procedure, router } from '../trpc';
 
 export const appRouter = router({
-  hello: procedure
+  cmsPost: procedure
     .input(
       z.object({
         text: z.string(),
@@ -15,8 +17,22 @@ export const appRouter = router({
       //     author: true,
       //   },
       // });
+      const payload = await getPayload({ config: configPromise });
+
+      const posts = await payload.find({
+        collection: 'posts',
+        depth: 1,
+        limit: 12,
+        overrideAccess: false,
+        select: {
+          title: true,
+          slug: true,
+          categories: true,
+          meta: true,
+        },
+      });
       return {
-        post: 'hello',
+        post: posts,
       };
     }),
 });
