@@ -1,9 +1,9 @@
 src
-├── _modules
+├── \_modules
 ├── app: For Payload CMS
-│   └── (payload)
+│ └── (payload)
 ├── pages: For project
 └── server: For TRPC
-    ├── routers
-    │   └── _app.ts
-    └── trpc.ts
+├── routers
+│ └── \_app.ts
+└── trpc.ts

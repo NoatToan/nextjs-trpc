@@ -1,18 +1,18 @@
 import type { Metadata } from 'next';
 
-import { cn } from '@src/utilities/ui';
+import { cn } from '@moduleCMS/utilities/ui';
 import React from 'react';
 
-import { AdminBar } from '@src/components/AdminBar';
-import { Footer } from '@src/Footer/Component';
-import { Header } from '@src/Header/Component';
-import { Providers } from '@src/providers';
-import { InitTheme } from '@src/providers/Theme/InitTheme';
-import { mergeOpenGraph } from '@src/utilities/mergeOpenGraph';
+import { AdminBar } from '@moduleCMS/components/AdminBar';
+import { Providers } from '@moduleCMS/providers';
+import { InitTheme } from '@moduleCMS/providers/Theme/InitTheme';
+import { mergeOpenGraph } from '@moduleCMS/utilities/mergeOpenGraph';
 import { draftMode } from 'next/headers';
 
+import { Footer } from '@moduleCMS/Footer/Component';
+import { Header } from '@moduleCMS/Header/Component';
+import { getServerSideURL } from '@moduleCMS/utilities/getURL';
 import './globals.css';
-import { getServerSideURL } from '@src/utilities/getURL';
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode();

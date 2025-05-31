@@ -1,33 +1,32 @@
+import path from 'path';
+import { buildConfig, PayloadRequest } from 'payload';
+import sharp from 'sharp'; // sharp-import
+import { fileURLToPath } from 'url';
 
-import sharp from 'sharp' // sharp-import
-import path from 'path'
-import { buildConfig, PayloadRequest } from 'payload'
-import { fileURLToPath } from 'url'
+import { postgresAdapter } from '@payloadcms/db-postgres';
+import { Categories } from './_modules/cms/collections/Categories';
+import { Media } from './_modules/cms/collections/Media';
+import { Pages } from './_modules/cms/collections/Pages';
+import { Posts } from './_modules/cms/collections/Posts';
+import { Users } from './_modules/cms/collections/Users';
+import { defaultLexical } from './_modules/cms/fields/defaultLexical';
+import { Footer } from './_modules/cms/Footer/config';
+import { Header } from './_modules/cms/Header/config';
+import { plugins } from './_modules/cms/plugins';
+import { getServerSideURL } from './_modules/cms/utilities/getURL';
 
-import { Categories } from './collections/Categories'
-import { Media } from './collections/Media'
-import { Pages } from './collections/Pages'
-import { Posts } from './collections/Posts'
-import { Users } from './collections/Users'
-import { Footer } from './Footer/config'
-import { Header } from './Header/config'
-import { plugins } from './plugins'
-import { defaultLexical } from '@src/fields/defaultLexical'
-import { getServerSideURL } from './utilities/getURL'
-import { postgresAdapter } from '@payloadcms/db-postgres'
-
-const filename = fileURLToPath(import.meta.url)
-const dirname = path.dirname(filename)
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 export default buildConfig({
   admin: {
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
-      beforeLogin: ['@src/components/BeforeLogin'],
+      beforeLogin: ['@moduleCMS/components/BeforeLogin'],
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
-      beforeDashboard: ['@src/components/BeforeDashboard'],
+      beforeDashboard: ['@moduleCMS/components/BeforeDashboard'],
     },
     importMap: {
       baseDir: path.resolve(dirname),
@@ -81,15 +80,15 @@ export default buildConfig({
     access: {
       run: ({ req }: { req: PayloadRequest }): boolean => {
         // Allow logged in users to execute this endpoint (default)
-        if (req.user) return true
+        if (req.user) return true;
 
         // If there is no logged in user, then check
         // for the Vercel Cron secret to be present as an
         // Authorization header:
-        const authHeader = req.headers.get('authorization')
-        return authHeader === `Bearer ${process.env.CRON_SECRET}`
+        const authHeader = req.headers.get('authorization');
+        return authHeader === `Bearer ${process.env.CRON_SECRET}`;
       },
     },
     tasks: [],
   },
-})
+});

@@ -20,10 +20,11 @@
       }
     ],
     "paths": {
+      "@moduleCMS/*": ["./src/_modules/cms/*"],
+      "@module/*": ["./src/_modules/*"],
+      "@payload-config": ["./src/payload.config.ts"],
       "@src/*": ["./src/*"],
-      "react": ["./node_modules/@types/react"],
-
-      "@payload-config": ["./src/payload.config.ts"]
+      "react": ["./node_modules/@types/react"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

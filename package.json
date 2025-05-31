@@ -5,13 +5,12 @@
   "type": "module",
   "scripts": {
     "dev_turbo": "next dev --turbopack",
-    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
-    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
-    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "lint": "tsc --noemit && cross-env NODE_OPTIONS=--no-deprecation next lint",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "dev": "prettier . --write && rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "type": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types"
   },
   "dependencies": {
@@ -43,6 +42,7 @@
     "graphql": "^16.8.1",
     "lucide-react": "^0.511.0",
     "next": "15.3.2",
+    "next-sitemap": "^4.2.3",
     "payload": "3.40.0",
     "prism-react-renderer": "^2.4.1",
     "react": "19.1.0",
