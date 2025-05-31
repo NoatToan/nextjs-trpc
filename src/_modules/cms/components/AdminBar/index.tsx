@@ -38,9 +38,11 @@ export const AdminBar: React.FC<{
   const segments = useSelectedLayoutSegments();
   const [show, setShow] = useState(false);
   const collection = // @ts-ignore
-  (
-    collectionLabels[segments?.[1] as keyof typeof collectionLabels] ? segments[1] : 'pages'
-  ) as keyof typeof collectionLabels;
+    (
+      collectionLabels[segments?.[1] as keyof typeof collectionLabels] && segments?.[1]
+        ? segments?.[1]
+        : 'pages'
+    ) as keyof typeof collectionLabels;
   const router = useRouter();
 
   const onAuthChange = React.useCallback((user: PayloadMeUser) => {

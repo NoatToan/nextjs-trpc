@@ -10,7 +10,7 @@
     "lint": "tsc --noemit && cross-env NODE_OPTIONS=--no-deprecation next lint",
     "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
-    "dev": "prettier . --write && rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "dev": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
     "type": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types"
   },
   "dependencies": {
