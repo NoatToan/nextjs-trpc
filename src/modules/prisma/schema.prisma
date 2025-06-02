@@ -8,20 +8,34 @@ datasource db {
 }
 
 model User {
-  id       Int     @id @default(autoincrement())
-  name     String
-  email    String  @unique
-  teamId   Int?
-  team     Team?   @relation("UserTeam", fields: [teamId], references: [id])
-  isLeader Boolean @default(false)
-  // Để đối ứng với leader của Team
-  leadingTeam Team? @relation("TeamLeader")
+  id          Int         @id @default(autoincrement())
+  name        String
+  email       String      @unique
+  phoneNumber Int
+   isLeader    Boolean      @default(false)
+  userTeams   UserTeam[]
 }
 
 model Team {
-  id        Int     @id @default(autoincrement())
+  id        Int         @id @default(autoincrement())
   name      String
-  leaderId  Int?    @unique
-  leader    User?   @relation("TeamLeader", fields: [leaderId], references: [id])
-  members   User[]  @relation("UserTeam")
+  userTeams UserTeam[]
+}
+
+model UserTeam {
+  userId Int
+  teamId Int
+
+  role   Role          @default(MEMBER)
+
+  user User @relation(fields: [userId], references: [id])
+  team Team @relation(fields: [teamId], references: [id])
+
+  @@id([userId, teamId])
+}
+
+enum Role {
+  MEMBER
+  LEADER
+  INTERN
 }
