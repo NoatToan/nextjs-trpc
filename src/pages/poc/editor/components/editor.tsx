@@ -1,32 +1,14 @@
 // create editor instance
 import EditorJS from '@editorjs/editorjs';
+import { Button } from '@heroui/react';
 import { useMemo, useState } from 'react';
 import { EDITOR_JS_TOOLS } from './tools';
 
-export default function Editor({
-  suffix,
-  data,
-  setData,
-}: {
-  suffix: string | number;
-  data: any;
-  setData: (data: any) => void;
-}) {
-  const holderId = `editorjs${suffix}`;
+export default function Editor({ suffix, initData }: { suffix: string | number; initData: any }) {
+  const holderId = `${suffix}`;
 
-  // const editor = new EditorJS({
-  //   /**
-  //    * Id of Element that should contain the Editor
-  //    */
-  //   holder: 'editorjs',
+  const [UIReadOnly, setUIReadOnly] = useState(false);
 
-  //   /**
-  //    * Available Tools list.
-  //    * Pass Tool's class or Settings object for each Tool you want to use
-  //    */
-  //   tools: EDITOR_JS_TOOLS,
-  //   data: data,
-  // });
   const editor = useMemo(() => {
     return new EditorJS({
       /**
@@ -39,9 +21,9 @@ export default function Editor({
        * Pass Tool's class or Settings object for each Tool you want to use
        */
       tools: EDITOR_JS_TOOLS,
-      data: data,
+      data: initData,
       inlineToolbar: true,
-      minHeight: 200,
+      minHeight: 50,
       hideToolbar: true,
     });
   }, []);
@@ -51,7 +33,12 @@ export default function Editor({
       .save()
       .then(outputData => {
         console.log('Saved data: ', outputData);
-        setData(outputData);
+        console.log('outputData', outputData);
+
+        setTimeout(() => {
+          editor.readOnly.toggle();
+          setUIReadOnly(true);
+        }, 500);
       })
       .catch(error => {
         console.log('Saving failed: ', error);
@@ -61,19 +48,25 @@ export default function Editor({
   return (
     <div className={'flex flex-col gap-1 w-full'}>
       <div>
-        <p className="text-xs">{holderId}</p>
         <div className="flex flex-row gap-1">
-          <button onClick={onClickHandler}>Save</button>
-          <button
-            onClick={() => {
+          <p className="text-xs">{holderId}</p>
+          <Button
+            className="min-w-[5rem] h-5"
+            onPress={() => {
               editor.readOnly.toggle();
+
+              if (UIReadOnly) {
+                setUIReadOnly(!editor.readOnly.isEnabled);
+              } else {
+                onClickHandler();
+              }
             }}>
-            Edit
-          </button>
+            {UIReadOnly ? 'Edit' : 'Save'}
+          </Button>
         </div>
       </div>
 
-      <div id={holderId} className="text-[.75rem]!"></div>
+      <div id={holderId} className="text-[8px]! pb-0!"></div>
     </div>
   );
 }

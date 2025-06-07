@@ -70,7 +70,7 @@ export const EDITOR_JS_TOOLS = {
   // paragraph: Paragraph,
   // embed: Embed,
   table: Table,
-  // list: List,
+  list: List,
   // warning: Warning,
   // code: Code,
   // linkTool: LinkTool,
