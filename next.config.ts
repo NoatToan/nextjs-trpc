@@ -21,7 +21,7 @@ const nextConfig = {
       }),
     ],
   },
-  reactStrictMode: true,
+  reactStrictMode: false, // false for react-editor-js
   redirects,
 };
 
