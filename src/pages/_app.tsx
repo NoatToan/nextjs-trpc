@@ -1,7 +1,7 @@
 import { trpc } from '@module/utils/trpc';
-import Providers from '@moduleCMS/providers';
+import Providers from '@src/pages/providers';
 import type { AppType } from 'next/app';
-import './../globals.scss';
+import './../globals.css';
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (

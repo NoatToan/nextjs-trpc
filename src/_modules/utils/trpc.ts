@@ -1,4 +1,4 @@
-import { AppRouter } from '@src/server/routers/_app';
+import { AppRouter } from '@src/_server/routers/_app';
 import { httpBatchLink } from '@trpc/client';
 import { createTRPCNext } from '@trpc/next';
 function getBaseUrl() {
@@ -14,6 +14,7 @@ function getBaseUrl() {
   // assume localhost
   return `http://localhost:${process.env.PORT ?? 3000}`;
 }
+
 export const trpc = createTRPCNext<AppRouter>({
   config(opts) {
     return {

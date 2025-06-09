@@ -4,16 +4,6 @@ import sharp from 'sharp'; // sharp-import
 import { fileURLToPath } from 'url';
 
 import { postgresAdapter } from '@payloadcms/db-postgres';
-import { Categories } from './_modules/cms/collections/Categories';
-import { Media } from './_modules/cms/collections/Media';
-import { Pages } from './_modules/cms/collections/Pages';
-import { Posts } from './_modules/cms/collections/Posts';
-import { Users } from './_modules/cms/collections/Users';
-import { defaultLexical } from './_modules/cms/fields/defaultLexical';
-import { Footer } from './_modules/cms/Footer/config';
-import { Header } from './_modules/cms/Header/config';
-import { plugins } from './_modules/cms/plugins';
-import { getServerSideURL } from './_modules/cms/utilities/getURL';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -23,15 +13,15 @@ export default buildConfig({
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeLogin` statement on line 15.
-      beforeLogin: ['@moduleCMS/components/BeforeLogin'],
+      // beforeLogin: ['@moduleCMS/components/BeforeLogin'],
       // The `BeforeDashboard` component renders the 'welcome' block that you see after logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below and the import `BeforeDashboard` statement on line 15.
-      beforeDashboard: ['@moduleCMS/components/BeforeDashboard'],
+      // beforeDashboard: ['@moduleCMS/components/BeforeDashboard'],
     },
     importMap: {
       baseDir: path.resolve(dirname),
     },
-    user: Users.slug,
+    // user: Users.slug,
     livePreview: {
       breakpoints: [
         {
@@ -56,7 +46,7 @@ export default buildConfig({
     },
   },
   // This config helps us configure global or default features that the other editors can inherit
-  editor: defaultLexical,
+  // editor: defaultLexical,
   // database-adapter-config-start
   db: postgresAdapter({
     pool: {
@@ -64,11 +54,11 @@ export default buildConfig({
     },
   }),
   // database-adapter-config-end
-  collections: [Pages, Posts, Media, Categories, Users],
-  cors: [getServerSideURL()].filter(Boolean),
-  globals: [Header, Footer],
+  // collections: [Pages, Posts, Media, Categories, Users],
+  // cors: [getServerSideURL()].filter(Boolean),
+  // globals: [Header, Footer],
   plugins: [
-    ...plugins,
+    // ...plugins,
     // storage-adapter-placeholder
   ],
   secret: process.env.PAYLOAD_SECRET,

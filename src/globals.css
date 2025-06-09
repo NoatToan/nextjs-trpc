@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: calc(var(--scale-width) * 16px);
+}
+
+:root {
+  --scale-width: 1;
+  --scroll-bar-width: 0;
+}
+
+.color-primary {
+  color: hsl(var(--heroui-default));
+}
+
+.bg-primary {
+  background-color: hsl(var(--heroui-primary-50));
+}
